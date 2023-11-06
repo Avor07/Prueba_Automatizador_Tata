@@ -4,6 +4,7 @@ import Questions.GetTextQuestion;
 import Task.NavigateSimulatingPage;
 import Task.OpenTask;
 import Task.SimulateCredit;
+import exceptions.CouldNotInitializateDriverException;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -24,8 +25,9 @@ public class SimulateCreditStepDefinitions {
     Actor client = Actor.named("client");
 
     @Before
-    public void setupActor() {
+    public void setupActor () throws  CouldNotInitializateDriverException {
         client.can(BrowseTheWeb.with(driver));
+        throw new CouldNotInitializateDriverException();
     }
 
     @Given("The user is on simulating page")
